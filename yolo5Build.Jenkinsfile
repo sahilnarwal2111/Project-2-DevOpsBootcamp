@@ -1,10 +1,14 @@
 pipeline {
     agent any
+    environment{
+        ECR_REPO = sahil-jenkins
+        ECR_URL = 854171615125.dkr.ecr.us-west-1.amazonaws.com
+    }
 
     stages {
         stage('Authentication') {
             steps {
-                sh 'aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 854171615125.dkr.ecr.us-west-1.amazonaws.com'
+                sh 'aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin ${ECR_URL}'
 
 
             }
@@ -24,8 +28,8 @@ pipeline {
             steps {
                  sh '''
                  echo 'build step'
-                 docker tag sahil-jenkins:latest 854171615125.dkr.ecr.us-west-1.amazonaws.com/sahil-jenkins:${BUILD_NUMBER}
-                    docker push 854171615125.dkr.ecr.us-west-1.amazonaws.com/sahil-jenkins:${BUILD_NUMBER}
+                 docker tag sahil-jenkins:latest ${ECR_URL}/sahil-jenkins:${BUILD_NUMBER}
+                    docker push ${ECR_URL}/${ECR_REPO}:${BUILD_NUMBER}
                      '''
             }
         }
