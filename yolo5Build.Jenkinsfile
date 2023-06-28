@@ -9,6 +9,7 @@ pipeline {
                 sh 'echo building...'
                 sh 'echo building...'
                 sh 'echo building...'
+
             }
         }
         stage('Build') {
