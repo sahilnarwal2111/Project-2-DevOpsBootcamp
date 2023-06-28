@@ -16,11 +16,11 @@ pipeline {
             steps {
                  sh '''
                     cd yolo5
-                    aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 854171615125.dkr.ecr.us-east-2.amazonaws.com
-                    docker build -t shambhavee-jenkins:$BUILD_TAG .
-                    docker tag shambhavee-jenkins:$BUILD_TAG 854171615125.dkr.ecr.us-east-2.amazonaws.com/shambhavee-jenkins:$BUILD_TAG
-                    docker push 854171615125.dkr.ecr.us-east-2.amazonaws.com/shambhavee-jenkins:$BUILD_TAG
-                 '''
+                    aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 854171615125.dkr.ecr.eu-north-1.amazonaws.com
+                    docker build -t sahil-jenkins:$BUILD_TAG .
+                    docker tag sahil-jenkins:latest 854171615125.dkr.ecr.eu-north-1.amazonaws.com/sahil-jenkins:$BUILD_TAG
+                    docker push 854171615125.dkr.ecr.eu-north-1.amazonaws.com/sahil-jenkins:$BUILD_TAG
+                     '''
 
             }
         }
