@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment{
-        ECR_REPO = sahil-jenkins
-        ECR_URL = 854171615125.dkr.ecr.us-west-1.amazonaws.com
+        ECR_REPO = 'sahil-jenkins'
+        ECR_URL = '854171615125.dkr.ecr.us-west-1.amazonaws.com'
     }
 
     stages {
