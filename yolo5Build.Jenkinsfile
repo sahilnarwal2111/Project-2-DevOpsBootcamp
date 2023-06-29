@@ -33,5 +33,13 @@ pipeline {
                      '''
             }
         }
+
+        stage('Trigger Deploy') {
+            steps {
+                build job: 'Yolo5Deploy', wait: false, parameters: [
+                    string(name: 'YOLO5_IMAGE_URL', value: ${ECR_URL}/${ECR_REPO}:${BUILD_NUMBER})
+                ]
+    }
+}
     }
 }
