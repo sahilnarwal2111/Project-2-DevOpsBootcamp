@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment{
         ECR_REPO = 'sahil-jenkins'
-        ECR_URL = '854171615125.dkr.ecr.us-west-1.amazonaws.com'
+        ECR_URL='854171615125.dkr.ecr.us-west-1.amazonaws.com'
     }
 
     stages {
@@ -31,6 +31,13 @@ pipeline {
                  docker tag sahil-jenkins:latest ${ECR_URL}/sahil-jenkins:${BUILD_NUMBER}
                     docker push ${ECR_URL}/${ECR_REPO}:${BUILD_NUMBER}
                      '''
+            }
+        }
+        stage('Trigger Deploy') {
+            steps {
+                build job: 'Yolo5Deploy', wait: false, parameters: [
+                    string(name: 'YOLO5_IMAGE_URL', value: '854171615125.dkr.ecr.us-west-1.amazonaws.com'/'sahil-jenkins':${BUILD_NUMBER})
+                ]
             }
         }
 

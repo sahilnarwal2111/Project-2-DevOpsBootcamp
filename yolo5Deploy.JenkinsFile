@@ -5,9 +5,9 @@ pipeline {
      parameters { string(name: 'YOLO5_IMAGE_URL', defaultValue: '', description: '') }
 
      environment {
-        AWS_REGION_K8S = 'us-east-2'
-        K8S_CLUSTER_NAME = 'k8s-batch1'
-        K8S_NAMESPACE = 'sahilnarwal-ns'
+        AWS_REGION_K8S='us-east-2'
+        K8S_CLUSTER_NAME='k8s-batch1'
+        K8S_NAMESPACE='sahilnarwal-ns'
     }
 
     stages {
@@ -23,6 +23,7 @@ pipeline {
             steps {
 
                 sh '''
+                    cd k8s
                     kubectl apply -f yolo5-deployment.yaml
                 '''
             }
