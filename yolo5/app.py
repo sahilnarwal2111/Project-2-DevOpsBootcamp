@@ -9,7 +9,7 @@ from loguru import logger
 import boto3
 import json
 
-s3_client = boto3.client("s3")
+#s3_client = boto3.client("s3")
 
 with open('config.json') as f:
 
@@ -92,5 +92,10 @@ def upload_file_api():
 
 
 if __name__ == "__main__":
+    s3_client = boto3.client('s3',
+                             aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
+                             aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
+                             region_name=os.environ['AWS_DEFAULT_REGION']
+                             )
     app.run(host='0.0.0.0', port=8081, debug=True)
 
