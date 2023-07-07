@@ -29,5 +29,5 @@ spec:
   selector:
     app: my-yolo5-app
   ports:
-    - port: 8082
-      targetPort: 8082
+    - port: 8081
+      targetPort: 8081
